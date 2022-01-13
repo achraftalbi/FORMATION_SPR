@@ -8,9 +8,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="request" />
+        <module name="loan-approval-spring-boot" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="loan-approval-spring-boot" target="1.8" />
       <module name="request" target="11" />
     </bytecodeTargetLevel>
   </component>

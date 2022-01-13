@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/FORMATION_SPR.iml" filepath="$PROJECT_DIR$/.idea/FORMATION_SPR.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../camunda-get-started-spring-boot-master/loan-approval-spring-boot.iml" filepath="$PROJECT_DIR$/../camunda-get-started-spring-boot-master/loan-approval-spring-boot.iml" />
       <module fileurl="file://$PROJECT_DIR$/request/request.iml" filepath="$PROJECT_DIR$/request/request.iml" />
     </modules>
   </component>

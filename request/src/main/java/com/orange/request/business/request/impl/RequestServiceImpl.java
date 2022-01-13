@@ -3,6 +3,7 @@ package com.orange.request.business.request.impl;
 import com.orange.request.business.request.services.RequestService;
 import com.orange.request.data.model.Request;
 import com.orange.request.data.model.RequestRepository;
+import com.orange.request.exceptions.request.RequestNotFoundException;
 import com.orange.request.representation.request.RequestRepresentation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +23,13 @@ public class RequestServiceImpl implements RequestService {
     RequestRepository requestRepository;
 
     @Override
-    public RequestRepresentation searchRequestNumber(Long number){
+    public RequestRepresentation searchRequestNumber(Long number) throws RequestNotFoundException {
 
         Optional<Request> request = requestRepository.findByNumber(number);
 
         if(request.isEmpty()){
             log.error("This request with number {} doesn't exit", number);
-            //thr
+            throw new RequestNotFoundException("REQ_NOT_FOUND_678");
         }
 
 
