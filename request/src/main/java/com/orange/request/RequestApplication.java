@@ -19,10 +19,4 @@ public class RequestApplication {
         SpringApplication.run(RequestApplication.class, args);
     }
 
-    @EventListener
-    private void processPostDeploy(PostDeployEvent event) {
-        runtimeService.startProcessInstanceByKey("loanApproval");
-    }
-
-
 }

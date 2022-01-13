@@ -1,5 +1,6 @@
 package com.orange.request.advice.global;
 
+import com.orange.request.exceptions.generic.FoundException;
 import com.orange.request.exceptions.generic.NotFoundException;
 import com.orange.request.exceptions.messages.ErrorMessage;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,14 @@ public class GlobalAdviceExceptionHandler {
                 .code(HttpStatus.NOT_FOUND.value()).message(ex.getMessage())
                 .date(new Date()).build();
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
+    }
+
+    @ExceptionHandler(value= FoundException.class)
+    ResponseEntity<ErrorMessage> resourceFoundException(NotFoundException ex){
+        ErrorMessage errorMessage = ErrorMessage.builder()
+                .code(HttpStatus.CONFLICT.value()).message(ex.getMessage())
+                .date(new Date()).build();
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorMessage);
     }
 
 }

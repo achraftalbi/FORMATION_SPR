@@ -1,11 +1,13 @@
 package com.orange.request.data.model;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
 
 @Entity
 @Data
+@Builder
 public class Request {
 
     @Id

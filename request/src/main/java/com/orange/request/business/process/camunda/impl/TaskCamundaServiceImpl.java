@@ -2,6 +2,7 @@ package com.orange.request.business.process.camunda.impl;
 
 import com.orange.request.business.process.camunda.services.TaskCamundaService;
 import com.orange.request.representation.process.TaskRepresentation;
+import com.orange.request.representation.process.TreatTaskResponseRepresentation;
 import org.camunda.bpm.engine.TaskService;
 import org.camunda.bpm.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +21,27 @@ public class TaskCamundaServiceImpl implements TaskCamundaService {
 
     TaskService taskService;
 
+    void claimTask(String taskId, String userId){
+        taskService.claim(taskId,userId);
+    }
+
+    void completeTask(String taskId){
+        taskService.complete(taskId);
+    }
+
+    @Override
+    public TreatTaskResponseRepresentation treatTask(String taskId, String userId){
+        claimTask(taskId, userId);
+        completeTask(taskId);
+        return TreatTaskResponseRepresentation.builder()
+                .taskId(taskId).taskCompleted(true).build();
+
+    }
 
     @Override
     public List<TaskRepresentation> userTaskList() {
 
-        List<Task> taskList = taskService.createTaskQuery().taskDefinitionKey("Task_0dfv74n").list();
+        List<Task> taskList = taskService.createTaskQuery().taskDefinitionKey("Activity_0cimfcu").list();
         List<TaskRepresentation> taskRepresentationList = new ArrayList<>();
         if(taskList!=null && !taskList.isEmpty()){
             taskList.stream().forEach(entre->{
